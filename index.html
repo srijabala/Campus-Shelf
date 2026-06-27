@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Shelf</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="newarrivals.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+
+
+  <!-- Top Sticky Bar -->
+<div class="top-bar">
+  <!-- Left: Logo + Hours -->
+  <div class="left-section">
+    <i class="bi bi-journal-bookmark-fill campus-logo"></i>
+    <span class="campus-text">Campus Shelf</span>
+    <span class="library-hours" id="today-hours">Today's Hours: 9AM - 5PM</span>
+  </div>
+
+  <!-- Right: Auth Buttons -->
+  <div class="auth-buttons">
+    <button id="login-btn"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+    <button id="signup-btn"><i class="bi bi-person-plus"></i> Sign Up</button>
+    <button id="lib-btn"><i class="bi bi-card-text"></i> Library Card</button>
+  
+  </div>
+</div>
+
+
+<div class="bookmark-floating">
+  <i id="topBookmarkIcon" class="bi bi-bookmark"></i> <span>Bookmarks</span>
+  <div id="bookmarkList"></div>
+</div>
+
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome To Campus Shelf</h1>
+    <p>Read books, explore articles, get information anywhere!</p>
+
+  
+    <div class="hero-nav">
+  <a href="#hero">Home</a>
+  <a href="#books-section">Library</a>
+  <a href="#articles">Articles</a>
+  <a href="#about-us">About</a>
+  <a href="#new-arrivals">New arrivals</a>
+  <a href="#" id="navContact">Contact</a> <!-- Added id and href="#" -->
+</div>
+
+
+    <!-- Search bar -->
+    <div class="input-group">
+      <input type="text" id="search-input" placeholder="Search for books/authors" />
+      <button class="search-btn"><i class="bi bi-search"></i></button>
+    </div>
+
+    <!-- Quotes -->
+    <div class="quotes-section">
+      <p id="quote"></p>
+      <div id="dots"></div>
+    </div>
+  
+    <a href="senior-recommendations.html" target="_blank" class="btn">Explore</a>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<!-- Forms (single version, same for desktop & mobile) -->
+<div class="forms-container">
+  <form class="auth-form login-form">
+    <h3>Login <span class="close-btn">&times;</span></h3>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <form class="auth-form signup-form">
+    <h3>Sign Up <span class="close-btn">&times;</span></h3>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <form class="auth-form library-form">
+    <h3>Library Card <span class="close-btn">&times;</span></h3>
+    <input type="text" placeholder="Registration number" required>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="text" placeholder="Branch" required>
+    <input type="text" placeholder="Your Current semester" required>
+    <button type="submit">Submit</button>
+  </form>
+  
+</div>
+
+
+<!-- Contact / Feedback Modal -->
+<div id="contactModal" class="feedback-form">
+  <div class="feedback-form-content">
+    <span class="close-btn" id="closeContact">&times;</span>
+    <h2>Contact / Feedback</h2>
+    <p>We’d love to hear from you! Drop your feedback below.</p>
+
+    <form id="feedbackForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Feedback</button>
+    </form>
+
+    <p id="feedbackMsg" style="color:green; margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- BOOKS SECTION -->
+<section class="books-section" id="books-section">
+<div class="availability-boxes">
+  
+  <!-- Available scrolls to books carousel -->
+  <a href="#books-carousel" class="availability-card">
+    <h3>Available</h3>
+    <p>Books you can access now in the collection of the library</p>
+  </a>
+
+  <!-- Borrowed will scroll to borrowed section-->
+
+  <a href="#borrowed-section" class="availability-card">
+  <h3>Borrowed & Tracked</h3>
+  <p>Keep a digital record of the books you’ve borrowed physically and their deadlines</p>
+</a>
+
+
+  <!-- PDF scrolls to the same books carousel for now -->
+ <a href="#pdf-section" class="availability-card">
+  <h3>PDF Format</h3>
+  <p>Read or download digital copies instantly</p>
+</a>
+
+  
+
+
+  <div class="category-boxes">
+    <div  id="academic-box" class="category-card" onclick="fetchBooks('engineering')">
+      <h3>Academics</h3>
+      <p> Click to explore engineering & research books in the collection</p>
+    </div>
+    <div id="fiction-box" class="category-card" onclick="fetchBooks('fiction')">
+      <h3>Fiction</h3>
+      <p>Click to dive into stories & novels in the collection</p>
+    </div>
+    <div id="nonfiction-box" class="category-card" onclick="fetchBooks('non-fiction')">
+      <h3>Non-Fiction</h3>
+      <p>Click to read biographies, history & more in the collection</p>
+    </div>
+  </div>
+
+  <!-- Books Display -->
+  <div class="books-display">
+    <div class="books-image">
+      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Books" />
+      <h2>In the Collection</h2>
+    </div>
+    <div class="books-carousel-container">
+      <button class="scroll-btn left" onclick="scrollBooks('left')">&#10094;</button>
+      <div class="books-carousel" id="books-carousel"></div>
+      <button class="scroll-btn right" onclick="scrollBooks('right')">&#10095;</button>
+    </div>
+   
+    
+  </div>
+
+</section>
+
+<!-- Book Modal -->
+<div id="bookModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img id="modalCover" src="" alt="Book Cover">
+    <h2 id="modalTitle">Title</h2>
+    <h4 id="modalAuthor">Author</h4>
+    <div id="modalDesc">Description here...</div>
+    <div class="modal-actions">
+      <div class="reviews">
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star"></i>
+      </div>
+      <button id="bookmarkBtn" class="bi bi-bookmark"> Bookmark</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Borrowed books-->
+<section class="borrowed-section" id="borrowed-section">
+  <h2>Borrowed Books</h2>
+  <p>Currently checked out by students</p>
+  <div class="borrowed-books-container" id="borrowed-books"></div>
+</section>
+
+
+<!-- ================= PDF BOOKS SECTION ================= -->
+<section class="pdf-section" id="pdf-section">
+  <!-- Heading with smallbook image -->
+  <div class="pdf-heading">
+    <img src="images/pdf_section.jpg" alt="Books Banner">
+    <h2>Read eBooks</h2>
+  </div>
+
+  <p>Click on "View PDF" to read online instantly.</p>
+
+  <!-- Container for horizontal PDF cards -->
+  <div class="pdf-books-container" id="pdf-books"></div>
+</section>
+
+<!-- ---------------- ARTICLES SECTION ---------------- -->
+<section id="articles">
+  <div class="container">
+    <h2>Useful Articles</h2>
+    <p>Explore articles on productivity, mindset, and focus</p>
+    <div class="articles-grid">
+
+      <!-- Article 1 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/mindfulness.jpg" alt="I am not everything all at once">
+        </div>
+        <div class="card-content">
+          <h3>I am not everything all at once, and that's okay</h3>
+          <p>Learn to accept yourself and your journey without pressure to be everything at once.</p>
+          <a href="https://ellululu.substack.com/p/im-not-everything-all-at-once-and" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/childhood.jpg" alt="Why time felt slower when we were kids">
+        </div>
+        <div class="card-content">
+          <h3>Why time felt slower when we were kids</h3>
+          <p>Explore why childhood memories feel longer and the psychology behind time perception.</p>
+          <a href="https://medium.com/@yanayuhai/why-time-felt-slower-when-we-were-kids-and-how-to-get-it-back-596bf143e37c" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/decision.jpg" alt="What's stopping you">
+        </div>
+        <div class="card-content">
+          <h3>What's stopping you from doing what you want</h3>
+          <p>Understand common mental blocks and learn strategies to overcome them.</p>
+          <a href="https://erifili.substack.com/p/whats-stopping-you-from-doing-what" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 4 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/climb.jpg" alt="A good life is inconvenient">
+        </div>
+        <div class="card-content">
+          <h3>A good life is inconvenient</h3>
+          <p>Why meaningful achievements require effort, patience, and stepping out of comfort zones.</p>
+          <a href="https://israanasir.substack.com/p/a-good-life-is-inconvenient?" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 5 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/digital.jpg" alt="Perils of classifying everything as content">
+        </div>
+        <div class="card-content">
+          <h3>The perils of classifying everything on internet as 'content'</h3>
+          <p>Explore how digital overload affects mental health and attention spans.</p>
+          <a href="https://www.vogue.in/culture-and-living/content/the-perils-of-classifying-everything-on-the-internet-as-content" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 6 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/habits.jpg" alt="Atomic Habits">
+        </div>
+        <div class="card-content">
+          <h3>Atomic Habits: The Power of Tiny Changes</h3>
+          <p>Learn how small, consistent habits can create remarkable transformations over time.</p>
+          <a href="https://www.peterkang.com/lessons-from-atomic-habits-by-james-clear/" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 7 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/f1.jpeg" alt="Lewis Hamilton on discipline">
+        </div>
+        <div class="card-content">
+          <h3>How to Build Discipline, According to Lewis Hamilton</h3>
+          <p>Discover how F1 legend Lewis Hamilton maintains peak performance through focus and mental discipline.</p>
+          <a href="https://www.masterclass.com/articles/how-to-build-discipline-by-lewis-hamilton" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 8 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/ai-education.jpg" alt="AI in Education">
+        </div>
+        <div class="card-content">
+          <h3>AI in Education: Transforming How Students Learn</h3>
+          <p>Explore how AI tools are changing classroom learning and study habits for students worldwide.</p>
+          <a href="https://datahubanalytics.com/ai-in-education-personalizing-learning-and-improving-outcomes/" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 9 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/productivity.jpg" alt="Productivity Tips">
+        </div>
+        <div class="card-content">
+          <h3>Top 5 Productivity Hacks for College Students</h3>
+          <p>Quick, practical strategies to manage time, assignments, and exams effectively.</p>
+          <a href="https://www.apu.edu/articles/9-simple-productivity-tips-for-college-students/" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 10 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/internship.jpg" alt="Landing Your First Internship">
+        </div>
+        <div class="card-content">
+          <h3>Landing Your First Internship: Tips for Beginners</h3>
+          <p>Key steps to create a strong resume, ace interviews, and impress recruiters.</p>
+          <a href="https://www.sallie.com/resources/colleges/first-internship-tips" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 11 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/campus-resources.jpg" alt="Campus Resources">
+        </div>
+        <div class="card-content">
+          <h3>Making the Most of Campus Resources</h3>
+          <p>Learn how to utilize libraries, labs, and student clubs to boost your career and skills.</p>
+          <a href="https://making-waves.org/free-campus-resources-every-college-student-should-know/" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article 12 -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="images/articles/science-fun.jpg" alt="Fun Science Facts">
+        </div>
+        <div class="card-content">
+          <h3>Fun Science Facts You Didn’t Know</h3>
+          <p>Short, intriguing scientific trivia to spark curiosity and keep learning fun.</p>
+          <a href="https://www.sciencefocus.com/science/fun-facts" target="_blank" class="read-more">Read More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS SECTION -->
+<section id="new-arrivals">
+  <h2 class="section-heading">New Arrivals</h2>
+
+  <!-- FILTER BUTTONS -->
+  <div class="book-filters">
+    <button class="filter-btn active" data-branch="all">All</button>
+    <button class="filter-btn" data-branch="cse">CSE</button>
+    <button class="filter-btn" data-branch="ece">ECE</button>
+    <button class="filter-btn" data-branch="eee">EEE</button>
+    <button class="filter-btn" data-branch="mech">Mechanical</button>
+    <button class="filter-btn" data-branch="civil">Civil</button>
+  </div>
+
+  <!-- ARRIVALS CAROUSEL -->
+  <div class="arrivals-wrapper">
+    <button class="scroll-btn left">&#10094;</button>
+    <div class="arrivals-container">
+
+      <!-- CSE Books -->
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/c.jpg" alt="Data Structures in C">
+        <div class="arrival-info">
+          <h3>Data Structures in C</h3>
+          <p>Reema Thareja</p>
+          <p class="desc">Comprehensive guide to data structures using C language.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/operating.jpg" alt="Operating System Concepts">
+        <div class="arrival-info">
+          <h3>Operating System Concepts</h3>
+          <p>Silberschatz</p>
+          <p class="desc">Fundamental principles of modern operating systems.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/deep-learning.jpg" alt="Deep Learning">
+        <div class="arrival-info">
+          <h3>Deep Learning</h3>
+          <p>Ian Goodfellow</p>
+          <p class="desc">Comprehensive guide to deep learning techniques, neural networks, and AI applications.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/networks.jpg" alt="Computer Networks">
+        <div class="arrival-info">
+          <h3>Computer Networks</h3>
+          <p>William Stallings</p>
+          <p class="desc">Comprehensive guide to network architectures and protocols.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/ml.jpg" alt="Machine Learning">
+        <div class="arrival-info">
+          <h3>Machine Learning</h3>
+          <p>Tom M. Mitchell</p>
+          <p class="desc">Introduction to the principles and techniques of machine learning.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/artificial.jpg" alt="Artificial Intelligence">
+        <div class="arrival-info">
+          <h3>Artificial Intelligence: A Modern Approach</h3>
+          <p>Stuart Russell</p>
+          <p class="desc">Comprehensive textbook on AI fundamentals and applications.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/organisation.jpg" alt="Computer Organization">
+        <div class="arrival-info">
+          <h3>Computer Organization</h3>
+          <p>Morris Mano</p>
+          <p class="desc">Detailed explanation of computer architecture and digital logic.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/python.jpg" alt="Python Programming">
+        <div class="arrival-info">
+          <h3>Python Programming</h3>
+          <p>John Zelle</p>
+          <p class="desc">Practical guide to programming concepts using Python.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/computersecurity.jpg" alt="Computer Security">
+        <div class="arrival-info">
+          <h3>Computer Security</h3>
+          <p>William Stallings</p>
+          <p class="desc">Comprehensive overview of computer security principles.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-cse">
+        <img src="images/Arrivals/dld.jpg" alt="Digital Logic Design">
+        <div class="arrival-info">
+          <h3>Digital Logic Design</h3>
+          <p>M. Morris Mano</p>
+          <p class="desc">Foundational concepts for digital circuits and logic design.</p>
+        </div>
+      </div>
+
+      <!-- ECE Books -->
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-signals.jpg" alt="Signals and Systems">
+        <div class="arrival-info">
+          <h3>Signals and Systems</h3>
+          <p>Alan V. Oppenheim</p>
+          <p class="desc">Core concepts on signal processing and system analysis.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-communication.jpg" alt="Communication Systems">
+        <div class="arrival-info">
+          <h3>Communication Systems</h3>
+          <p>Simon Haykin</p>
+          <p class="desc">Comprehensive guide to analog and digital communication techniques.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-digital.jpg" alt="Digital Electronics">
+        <div class="arrival-info">
+          <h3>Digital Electronics</h3>
+          <p>R.P. Jain</p>
+          <p class="desc">Fundamentals of digital circuits, logic gates, and microcontrollers.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-microprocessors.jpg" alt="Microprocessors and Interfacing">
+        <div class="arrival-info">
+          <h3>Microprocessors & Interfacing</h3>
+          <p>Douglas V. Hall</p>
+          <p class="desc">Detailed guide on microprocessor architecture and interfacing techniques.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-vlsi.jpg" alt="VLSI Design">
+        <div class="arrival-info">
+          <h3>VLSI Design</h3>
+          <p>Neil Weste</p>
+          <p class="desc">Introduction to VLSI circuits, design, and layout techniques.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-microwave.jpg" alt="Microwave Engineering">
+        <div class="arrival-info">
+          <h3>Microwave Engineering</h3>
+          <p>David M. Pozar</p>
+          <p class="desc">Guide to microwave circuits, waveguides, and applications.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-antenna.jpg" alt="Antenna Theory">
+        <div class="arrival-info">
+          <h3>Antenna Theory</h3>
+          <p>John D. Kraus</p>
+          <p class="desc">Principles of antenna design, radiation, and propagation.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-semiconductor.jpg" alt="Semiconductor Devices">
+        <div class="arrival-info">
+          <h3>Semiconductor Devices</h3>
+          <p>Donald Neamen</p>
+          <p class="desc">Comprehensive study of semiconductor physics and devices.</p>
+        </div>
+      </div>
+
+ 
+
+      <div class="arrival-card branch-ece">
+        <img src="images/Arrivals/ece-robotics.jpg" alt="Robotics and Automation">
+        <div class="arrival-info">
+          <h3>Robotics and Automation</h3>
+          <p>John J. Craig</p>
+          <p class="desc">Introduction to robotic systems, kinematics, and automation.</p>
+        </div>
+      </div>
+
+      <!-- EEE Books -->
+      <div class="arrival-card branch-eee">
+        <img src="images/Arrivals/eee-electrical.jpg" alt="Electrical Machines">
+        <div class="arrival-info">
+          <h3>Electrical Machines</h3>
+          <p>Fitzgerald & Kingsley</p>
+          <p class="desc">Fundamentals of transformers, motors, and generators.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-eee">
+        <img src="images/Arrivals/eee-power-systems.jpg" alt="Power Systems">
+        <div class="arrival-info">
+          <h3>Power Systems</h3>
+          <p>C.L. Wadhwa</p>
+          <p class="desc">Design, operation, and analysis of electrical power systems.</p>
+        </div>
+      </div>
+
+      <!-- Mechanical Books -->
+      <div class="arrival-card branch-mech">
+        <img src="images/Arrivals/mech-thermodynamics.jpg" alt="Thermodynamics">
+        <div class="arrival-info">
+          <h3>Thermodynamics</h3>
+          <p>P.K. Nag</p>
+          <p class="desc">Core concepts of energy, heat, and work for mechanical engineering students.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-mech">
+        <img src="images/Arrivals/mech-machine-design.jpg" alt="Machine Design">
+        <div class="arrival-info">
+          <h3>Machine Design</h3>
+          <p>Shigley</p>
+          <p class="desc">Principles and methods for designing mechanical components.</p>
+        </div>
+      </div>
+
+      <!-- Civil Books -->
+      <div class="arrival-card branch-civil">
+        <img src="images/Arrivals/civil-structural.jpg" alt="Structural Analysis">
+        <div class="arrival-info">
+          <h3>Structural Analysis</h3>
+          <p>R.C. Hibbeler</p>
+          <p class="desc">Concepts and techniques for analyzing structures in civil engineering.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-civil">
+        <img src="images/Arrivals/civil-soil.jpg" alt="Soil Mechanics">
+        <div class="arrival-info">
+          <h3>Soil Mechanics</h3>
+          <p>K.R. Arora</p>
+          <p class="desc">Fundamentals of soil properties, testing, and foundation design.</p>
+        </div>
+      </div>
+
+      <div class="arrival-card branch-civil">
+        <img src="images/Arrivals/civil-concrete.jpg" alt="Concrete Technology">
+        <div class="arrival-info">
+          <h3>Concrete Technology</h3>
+          <p>M.S. Shetty</p>
+          <p class="desc">Materials, design, and construction methods for concrete structures.</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="scroll-btn right">&#10095;</button>
+  </div>
+</section>
+
+
+ <!-- --------- ABOUT US SECTION --------- -->
+  <section id="about-us">
+    <h2>About Us</h2>
+ 
+        <p>
+      <strong>Campus Shelf</strong> is your digital campus library built to help students explore, access, and track library resources effortlessly.  
+      Many students travel long distances only to find books unavailable or library hours closed.  
+      With Campus Shelf, you can check book availability, explore articles, and stay updated on library timings all from anywhere, anytime.  
+      This platform brings the campus library closer to every student.
+    </p>
+  </section>
+
+
+  
+<!-- Contact / Feedback Modal -->
+<div id="contactModal" class="feedback-form">
+  <div class="feedback-form-content">
+    <span class="close-btn" id="closeContact">&times;</span>
+    <h2>Contact / Feedback</h2>
+    <p>We’d love to hear from you! Drop your feedback below.</p>
+
+    <form id="feedbackForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Feedback</button>
+    </form>
+
+    <p id="feedbackMsg" style="color:green; margin-top:10px;"></p>
+  </div>
+</div>
+
+  
+
+
+
+<footer id="footer">
+  <div class="footer-container">
+    
+    
+    <!-- LEFT: Social Icons -->
+    <div class="footer-left">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+
+    <!-- CENTER: Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="">Home</a>
+      <a href="#books-section">Books</a>
+      <a href="#articles">Articles</a>
+      <a href="#pdf-section">PDFs</a>
+      <a href="#Contact">Contact</a>
+    </div>
+
+    <!-- RIGHT: Opening Hours -->
+    <div class="footer-right">
+      <h4>Opening Hours</h4>
+      <p>Monday: 9:00 AM - 4:00 PM</p>
+      <p>Tuesday: 9:00 AM - 4:00 PM</p>
+      <p>Wednesday: 9:00 AM - 4:00 PM</p>
+      <p>Thursday: 9:00 AM - 4:00 PM</p>
+      <p>Friday: 9:00 AM - 4:00 PM</p>
+      <p>Saturday: 10:00 AM - 3:00 PM</p>
+      <p>Sunday: Closed</p>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <p class="footer-bottom">&copy; 2025 Campus Shelf. All rights reserved.</p>
+</footer>
+
+
+
+
+
+
+<script src="auth.js"></script>
+<script src="bookmarks.js"></script>
+<script src="books.js"></script>
+<script src="borrowedbooks.js"></script>
+<script src="search.js"></script>
+<script src="pdf.js"></script>
+<script src="newarrival.js"></script>
+<script src="script.js"></script>
+<script src="responsive.js"></script>
+
+
+<!-- Back to Top Button -->
+<button id="back-to-top">&#8679;</button>
+<script>
+  // Get the button
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  // Show button after scrolling 200px
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+
+  // Scroll smoothly to top on click
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+  <div id="toast-container"></div>
+
+
+</body>
+</html>
+

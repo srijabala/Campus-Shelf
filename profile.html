@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Profile — Campus Shelf</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <main class="profile-container">
+
+    <!-- Header -->
+    <header class="profile-header">
+      <img id="profile-avatar" src="profile.jpg" alt="profile avatar">
+      <div class="profile-meta">
+        <h1 id="user-name">User</h1>
+        <p id="user-branch">Branch</p>
+        <p id="user-regno" class="muted">Reg. No: <span id="user-regno-val">N/A</span></p>
+      </div>
+    </header>
+
+    <!-- Stats row -->
+      <div class="stat-card" id="currently-borrowed">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-body">
+          <div class="stat-label">Currently Borrowed</div>
+          <div class="stat-value"><h2>0</h2></div>
+        </div>
+      </div>
+
+      <div class="stat-card" id="wishlist-count">
+        <div class="stat-icon">💛</div>
+        <div class="stat-body">
+          <div class="stat-label">Wishlist</div>
+          <div class="stat-value"><h2>0</h2></div>
+        </div>
+      </div>
+
+      <div class="stat-card" id="badges-count">
+        <div class="stat-icon">🏅</div>
+        <div class="stat-body">
+          <div class="stat-label">Badges</div>
+          <div class="stat-value"><h2>0</h2></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section class="progress-section">
+      <div class="progress-head">
+        <strong>Borrowed vs Limit</strong>
+        <small id="progress-meta">0 / 10</small>
+      </div>
+      <div class="progress-track">
+        <div id="borrowed-progress" class="progress-fill" style="width:0%"></div>
+      </div>
+    </section>
+
+    <!-- Borrowed books -->
+    <section class="books-section">
+      <h2>Borrowed Books</h2>
+      <ul id="borrowed-list" class="list-grid">
+        <li class="empty">No borrowed books yet</li>
+      </ul>
+    </section>
+
+    <!-- Wishlist -->
+    <section class="books-section">
+      <h2>Wishlist</h2>
+      <ul id="wishlist-list" class="list-grid">
+        <li class="empty">No wishlist books yet</li>
+      </ul>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements-section">
+      <h2>Achievements</h2>
+      <div id="badges-container" class="badges-container">
+        <p class="empty">No badges yet</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="profile.js"></script>
+</body>
+</html>

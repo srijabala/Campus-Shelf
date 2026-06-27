@@ -1,0 +1,315 @@
+/* ===========================
+   NEW ARRIVALS - BASE / DESKTOP
+   =========================== */
+#new-arrivals {
+  background-color: #8B0000; /* keep your dark red */
+  padding: 50px 20px;
+  color: #fff;
+}
+
+#new-arrivals .section-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: 600;
+  cursor: default;
+  position: relative;
+}
+
+#new-arrivals .section-heading::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background: #fff;
+  display: block;
+  margin: 5px auto 0;
+  transition: width 0.3s ease;
+}
+
+#new-arrivals .section-heading:hover::after {
+  width: 50px;
+  background: #ff4d4d;
+}
+
+/* FILTER BUTTONS */
+
+.book-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center; /* center on desktop */
+}
+
+
+.filter-btn {
+  padding: 8px 18px;
+  border: 2px solid #fff;     /* white border for visibility */
+  background-color: rgba(255, 255, 255, 0.2); /* semi-transparent white */
+  color: #fff;                /* white text */
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px); /* glassy effect */
+}
+
+.filter-btn:hover {
+  background-color: #ff4d4d;  /* highlight red */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+.filter-btn.active {
+  background-color: #fff;     /* white to stand out */
+  color: #8B0000;             /* dark red text */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+/* ARRIVALS CAROUSEL */
+.arrivals-wrapper {
+  position: relative;
+}
+
+.arrivals-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.arrival-card {
+  flex: 0 0 240px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+  height: 360px;
+}
+
+.arrival-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Slide-up info overlay */
+.arrival-info {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.85); /* same as before */
+  color: #fff;
+  padding: 15px 10px;
+  text-align: center;
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+}
+
+.arrival-card:hover .arrival-info {
+  bottom: 0;
+  opacity: 1;
+}
+
+.arrival-info h3 {
+  margin: 5px 0;
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.arrival-info p {
+  margin: 3px 0;
+  font-size: 0.8rem;
+  color: #ffdddd;
+  word-wrap: break-word;
+}
+
+.arrival-info .desc {
+  font-size: 0.75rem;
+  color: #ffcccc;
+  word-wrap: break-word;
+}
+
+/* SCROLL BUTTONS */
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: #ff4d4d;
+}
+
+.scroll-btn.left {
+  left: -15px;
+}
+
+.scroll-btn.right {
+  right: -15px;
+}
+
+.arrivals-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.arrivals-container::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+  border-radius: 5px;
+}
+
+/* ===========================
+   TABLET FIX (481px - 1024px)
+   =========================== */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #new-arrivals .section-heading {
+    font-size: 1.8rem;
+  }
+
+  .arrival-card {
+    flex: 0 0 200px;
+    height: 320px;
+    border-radius: 10px;
+  }
+
+  .arrival-info {
+    padding: 15px 10px;
+  }
+
+  .arrival-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .arrival-info p {
+    font-size: 0.75rem;
+  }
+
+  .arrival-info .desc {
+    font-size: 0.7rem;
+  }
+
+  .scroll-btn {
+    padding: 8px;
+    font-size: 1.3rem;
+  }
+
+  .scroll-btn.left {
+    left: -10px;
+  }
+
+  .scroll-btn.right {
+    right: -10px;
+  }
+   .book-filters {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    font-size: 0.9rem;
+  }.scroll-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6); /* current background */
+  color: #fff;                   /* this is the white arrow */
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: #ff4d4d; /* changes on hover */
+}
+
+}
+
+
+
+/* ===========================
+   MOBILE FIX (max-width: 480px)
+   =========================== */
+@media (max-width: 480px) {
+  #new-arrivals {
+    padding: 30px 10px;
+  }
+
+  #new-arrivals .section-heading {
+    font-size: 1.5rem;
+  }
+
+ .book-filters {
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+  
+
+  .arrival-card {
+    flex: 0 0 160px;
+    height: 260px;
+    border-radius: 10px;
+  }
+
+  .arrival-info {
+    padding: 12px 8px;
+  }
+
+  .arrival-info h3 {
+    font-size: 0.85rem;
+  }
+
+  .arrival-info p {
+    font-size: 0.7rem;
+  }
+
+  .arrival-info .desc {
+    font-size: 0.65rem;
+  }
+
+  .scroll-btn {
+    padding: 6px;
+    font-size: 1.1rem;
+  }
+
+  .scroll-btn.left {
+    left: -8px;
+  }
+
+  .scroll-btn.right {
+    right: -8px;
+  }
+
+  .arrivals-container {
+    gap: 10px;
+    padding: 5px 0;
+  }
+}

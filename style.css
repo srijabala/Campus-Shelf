@@ -1,0 +1,1813 @@
+
+body { 
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+html{
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px; /* slightly smaller padding */
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  flex-wrap: wrap;
+  position: relative; /* not sticky anymore */
+}
+
+/* Left section: logo + text + hours */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.campus-logo {
+  color: #fcb045;
+  font-size: 1.4rem;
+}
+
+.campus-text {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fcb045;
+}
+
+.library-hours {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* Auth buttons */
+.auth-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: 10px; /* small shift left */
+}
+
+.auth-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px; /* smaller buttons */
+  border: none;
+  border-radius: 20px;
+  background-color: #fcb045;
+  color: black;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem; /* smaller text */
+  transition: all 0.3s ease;
+}
+
+.auth-buttons button i {
+  font-size: 0.9rem;
+}
+
+.auth-buttons button:hover {
+  background-color: #f6942b;
+  color: white;
+  transform: translateY(-1px); /* smaller hover shift */
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .auth-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url("images/intro section.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  z-index:1;
+}
+
+.hero-content {
+  position: relative;
+  z-index:2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.hero-nav {
+  margin: 20px 0;
+}
+
+.hero-nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.hero-nav a:hover {
+  color: #f6942b;
+}
+
+.hero .btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #fcb045;
+  color: black;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #f6942b;
+  color: white;
+  box-shadow: 0 5px 15px rgba(10, 211, 214, 0.3);
+  transform: translateY(-2px);
+}
+/* HERO CONTENT FADE-IN */
+.hero-content h1,
+.hero-content p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  color: #ffffff; /* ensure text is bright over dark overlay */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7); /* subtle shadow for contrast */
+}
+
+/* Staggered reveal */
+.hero-content.show h1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.hero-content.show p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+/* Search Bar Container */
+.input-group {
+  position: relative;      /* crucial for dropdown positioning */
+  display: inline-flex;
+  max-width: 400px;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1;              /* lower than dropdown */
+}
+
+/* Input Field */
+#search-input {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border: none;            /* remove underline */
+  border-radius: 25px 0 0 25px;
+  outline: none;           /* remove yellow focus */
+  box-shadow: none;
+}
+
+/* Remove focus glow */
+#search-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(246,148,43,0.5);
+  border-color: #f6942b;
+}
+
+/* Search Button */
+.search-btn {
+  background-color: #fcb045;
+  border: 2px solid #fcb045;
+  border-radius: 0 25px 25px 0;
+  padding: 0 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-btn i {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.search-btn:hover {
+  background-color: #f6942b;
+  border-color: #f6942b;
+  color: white;
+}
+
+/* Dropdown Container */
+.search-dropdown {
+  position: absolute;
+  top: 100%;               /* right below input */
+  left: 0;
+  right: 0;
+  background-color: white;
+  /* border: 2px solid #fcb045; */
+  border-top: none;        /* no line between input and dropdown */
+  margin-top: -2px;        /* removes tiny gap */
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 0 0 15px 15px;
+  z-index: 9999;           /* above everything */
+  display: block;          /* ensure it's visible */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+  background: white;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #fcb045;
+  color: white;
+  font-weight: 500;
+}
+
+/* Scrollbar */
+.search-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-dropdown::-webkit-scrollbar-thumb {
+  background-color: #f6942b;
+  border-radius: 3px;
+}
+
+
+
+
+
+/* Quotes */
+.quotes-section {
+  margin-top: 15px;
+}
+
+#quote {
+  font-size: 1.2rem;
+  min-height: 30px;
+}
+
+#dots {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.4;
+  transition: opacity 0.3s; 
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+.btn-main {
+      margin: 5px;
+    }
+    .modal-header {
+      background-color: #fcb045;
+      color: black;
+    }
+    .modal-footer button {
+      border-radius: 25px;
+    }
+
+ /* Container for all forms */
+.forms-container {
+  position: fixed;           /* pop-up style */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* semi-transparent overlay */
+  display: none;             /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+/* Modal background */
+.form {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.5); /* soft dark overlay */
+  backdrop-filter: blur(2px); /* aesthetic blur effect */
+  transition: opacity 0.3s ease;
+}
+
+/* Feedback Modal content box */
+.feedback-form-content {
+  background: #ffffff;
+  margin: 80px auto;
+  padding: 40px 30px;
+  border-radius: 25px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* Show modal with animation */
+.feedback-form.show .feedback-form-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #888;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #444;
+}
+
+/* Headings & paragraph */
+.feedback-form-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.feedback-form-content p {
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Form styling */
+.feedback-form-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feedback-form-content input,
+.feedback-form-content textarea {
+  padding: 12px 15px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.feedback-form-content input:focus,
+.feedback-form-content textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74,144,226,0.2);
+}
+
+/* Submit button */
+.feedback-form-content button {
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.feedback-form-content button:hover {
+  background-color: #357abd;
+}
+
+/* Feedback message */
+#feedbackMsg {
+  color: #28a745;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+
+
+/* Individual Form */
+.auth-form {
+  display: flex;             /* flex for vertical alignment */
+  flex-direction: column;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 320px;             /* neat width */
+  max-width: 90%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Form Heading */
+.auth-form h3 {
+  margin-bottom: 20px;
+  color:10px solid black;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: black;
+}
+/* ================= FORM INPUTS ================= */
+.auth-form input {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* ================= FORM BUTTONS ================= */
+.auth-form button {
+  margin-top: 15px;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.auth-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Inputs */
+.auth-form input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px auto;         /* center horizontally */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* Buttons */
+.auth-form button {
+  width: 95%;
+  padding: 12px;
+  margin: 15px auto 0 auto;
+  border: none;
+  border-radius: 8px;
+  background-color: #8d0e27;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.auth-form button:hover {
+  background-color: #b81b3a;
+}
+
+.auth-form button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-form button:hover {
+  background-color: #357ABD;
+}
+
+.close-btn {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000000;
+}
+
+
+/* Whole books section background */
+.books-section {
+  background: #8d0e27;
+  padding: 40px;
+  color: white;
+}
+
+/* ====== AVAILABILITY CARDS ====== */
+.availability-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.availability-card {
+  text-decoration: none;
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.availability-card:hover {
+  color:#a31938;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  transition:0.3s ease;
+}
+
+/* ====== CATEGORY CARDS ====== */
+.category-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+}
+
+.category-card.active {
+  border: 2px solid #007BFF; /* highlight active */
+  transform: scale(1.05);
+}
+
+
+/* ====== BOOKS DISPLAY (Image + Carousel) ====== */
+.books-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Left image */
+.books-image {
+  flex: 1;
+  text-align: center;
+}
+
+.books-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Carousel container */
+.books-carousel-container {
+  flex: 3;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scrollable row */
+.books-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+}
+
+.books-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Book card */
+.book-card {
+  min-width: 180px;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.book-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.book-card h4 {
+  margin: 10px;
+  font-size: 16px;
+}
+
+.book-card p {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+
+.scroll-btn.right {
+  right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .books-display {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .books-image img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+.no-books-card {
+  width: 250px;
+  height: 150px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  text-align: center;
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+}
+
+.no-books-card h4 {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.no-books-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.no-books-card i {
+  margin-top: 8px;
+}
+
+
+
+/* ---------------- BORROWABLE BOOKS ---------------- */
+.borrowable-section {
+  background: #f4f4f4;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.borrowable-heading h2 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.borrowable-heading p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.borrowable-books-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.borrowable-card {
+  width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.borrowable-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.borrowable-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.borrowable-card h4 {
+  font-size: 16px;
+  margin: 10px 0 4px;
+}
+
+.borrowable-card p {
+  font-size: 12px;
+  margin: 0 0 10px;
+  color: #666;
+}
+
+.borrow-btn {
+  background: #fcb045;
+  border: none;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.borrow-btn:hover {
+  background: #f6942b;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content img {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#modalDesc {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+/* Reviews + bookmark inside modal */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-actions .reviews i {
+  color: gold;
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+#bookmarkBtn {
+  padding: 6px 12px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#bookmarkBtn:hover {
+  background-color: #e68a00;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+
+
+/* Floating Bookmark Button */
+.bookmark-floating {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  color: #fcb045;
+  font-weight: bold;
+  background: rgba(0,0,0,0.2);
+  padding: 6px 12px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.bookmark-floating:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+#topBookmarkIcon {
+  font-size: 20px;
+}
+
+#bookmarkList {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #fff;
+  min-width: 220px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+#bookmarkList .book-card {
+  display: flex;
+  align-items: center; 
+  gap: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+#bookmarkList .book-card img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+#bookmarkList p {
+  text-align: center;
+  color: #555;
+  margin: 10px 0 0 0;
+}
+
+
+
+/* ====================== BORROWED BOOKS SECTION ====================== */
+.borrowed-section {
+  background: #264653; /* dark blue background */
+  padding: 40px 20px;
+  color: white;
+  text-align: center;
+}
+
+.borrowed-section h2 {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.borrowed-section h2::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #ff5555;
+  margin: 8px auto 0 auto;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.borrowed-section h2:hover::after {
+  width: 60px;
+}
+
+/* Container for borrowed book cards */
+.borrowed-books-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Individual borrowed card */
+.borrowed-card {
+  background: white;
+  color: black;
+  width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding: 10px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.borrowed-card:hover {
+  transform: translateY(-5px);
+}
+
+.borrowed-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.borrowed-card h4 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+  text-align: center;
+}
+
+.borrowed-card p {
+  font-size: 13px;
+  color: #333;
+  text-align: center;
+}
+
+/* Borrowed label (status) */
+.borrowed-card .status {
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+  color: white;
+  background: #ff5555; /* red to indicate borrowed */
+}
+
+/* Return button style */
+.borrowed-card .return-btn {
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+  border: none;
+  background: #fcb045; /* golden accent */
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.borrowed-card .return-btn:hover {
+  transform: scale(1.05);
+  background: #f6942b; /* darker gold on hover */
+}
+
+
+
+
+/* ---------------- PDF SECTION ---------------- */
+.pdf-section {
+  background: #1e3748;        /* dark navy background */
+  padding: 50px 20px;
+  color: white;               /* default text color */
+  text-align: center;
+}
+
+/* Heading with small decorative book image */
+.pdf-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.pdf-heading h2 {
+  display: inline-block; /* makes the underline center under text */
+}
+
+.pdf-heading h2::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #ff5555;
+  margin: 8px auto 0 auto;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.pdf-heading h2:hover::after {
+  width: 60px;
+}
+
+.pdf-heading img {
+  width: 60px;               /* professional size */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;       /* rounded corners */
+  border: 2px solid #fcb045; /* golden border for visibility */
+}
+
+.pdf-heading h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: white;              /* heading text white */
+}
+
+.pdf-section p {
+  color: white;               /* “Click to view PDF” line */
+  font-size: 16px;            /* slightly bigger for readability */
+  margin-top: 10px;
+}
+
+/* Container for horizontal cards */
+.pdf-books-container {
+  display: flex;
+  flex-wrap: wrap;            /* allows wrapping into multiple rows */
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Horizontal PDF card */
+.pdf-card {
+  display: flex;
+  background: #2c3e50;        /* card slightly lighter than section */
+  color: white;               /* text inside card */
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  width: 280px;               /* smaller width to fit 3 per row */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pdf-card:hover {
+  background: #34495e;        /* hover effect */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255,100,100,0.5);
+}
+
+/* Left image (cover) */
+.pdf-card img {
+  width: 40%;
+  object-fit: cover;
+  transition: filter 0.3s;
+}
+
+.pdf-card:hover img {
+  filter: brightness(0.9);
+}
+
+/* Right details inside card */
+.pdf-card-details {
+  flex: 1;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pdf-card-details h4 {
+  font-size: 16px;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.pdf-card-details p {
+  font-size: 13px;
+  color: #ddd;  /* lighter text for author */
+  margin: 0 0 8px 0;
+}
+
+/* Button */
+.pdf-card-details button {
+  background: #fcb045;        /* golden accent */
+  color: black;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  width: fit-content;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.pdf-card-details button:hover {
+  background: #f6942b;        /* hover slightly darker gold */
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .pdf-card {
+    flex-direction: column;
+    width: 90%;
+  }
+  .pdf-card img {
+    width: 100%;
+    height: 200px;
+  }
+  .pdf-card-details {
+    padding: 10px;
+  }
+}
+/* ---------------- ARTICLES SECTION ---------------- */
+#articles {
+  background-color: #264653;
+  padding: 80px 20px;
+  color: #fff;
+}
+
+/* Container + heading */
+#articles .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+#articles h2 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 10px;
+  cursor: default;
+}
+
+/* Red underline on hover */
+#articles h2::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #ff5555;
+  margin: 8px auto 0 auto;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+#articles h2:hover::after {
+  width: 60px;
+}
+
+#articles p {
+  color: #d3d3d3;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+/* Grid layout for cards */
+.articles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+}
+
+/* Individual article card */
+.article-card {
+  background: #3a5a73;
+  color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 270px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transform: rotate(-1deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px; /* for 3D tilt */
+}
+
+/* Alternate rotation for even cards */
+.article-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+/* Hover tilt + lift + shimmer */
+.article-card:hover {
+  transform: rotate(0deg) translateY(-12px) rotateY(5deg);
+  /*box-shadow: 0 20px 35px rgba(0,0,0,0.25), 0 0 20px rgba(255,100,100,0.2);*/
+}
+/* Card image */
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Hover image zoom + slight rotation */
+.article-card:hover .card-image img {
+  transform: scale(1.08) rotate(1deg);
+}
+
+/* Overlay sweep animation (shimmer effect) */
+.card-image::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.article-card:hover .card-image::after {
+  left: 100%;
+}
+
+/* Card content */
+.card-content {
+  padding: 1rem 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Description text */
+.card-content p {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Read More link */
+.card-content a {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #f6942b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+  position: relative;
+}
+
+/* Arrow after text */
+.card-content a::after {
+  content: ' →';
+  transition: transform 0.3s ease;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+/* Hover glow + arrow move */
+.card-content a:hover {
+  color: #ffd6d6;
+  /* text-shadow: 0 0 5px #ff8888; */
+}
+
+.card-content a:hover::after {
+  transform: translateX(4px);
+}
+
+
+/* responsive */
+@media (max-width: 768px) {
+  .articles-grid {
+    gap: 1.5rem;
+  }
+  .article-card {
+    width: 90%;
+    max-width: 330px;
+  }
+  #articles h2 {
+    font-size: 2rem;
+  }
+}
+
+
+/* --------- ABOUT US SECTION --------- */
+#about-us {
+  padding: 80px 20px; /* slightly more padding for breathing space */
+  background: linear-gradient(135deg, #8B0000 0%, #5C0B0B 100%); /* deep red gradient */
+  color: #ffffff; /* text color white for contrast */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid #FF4C4C; /* subtle decorative line on top */
+}
+
+#about-us::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Ym9va3N8fHx8fHwxNjg5MjkxNjQ0&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;
+  opacity: 0.1; /* subtle background texture */
+  z-index: 0;
+}
+
+#about-us h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#about-us p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #ffffff;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* optional hover effect for paragraph for subtle animation */
+#about-us p:hover {
+  color: #FFCCCC; /* slight lightening effect */
+  transition: color 0.3s ease;
+}
+
+/* footer */
+/* FOOTER - DESKTOP */
+#footer {
+  background: linear-gradient(rgba(0,0,0,7), rgba(0,0,0,0.7)),
+              url('images/footer section.jpg') no-repeat center center/cover; /* footer bg image with gradient */
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px; /* spacing between columns */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left, .footer-links, .footer-right {
+  flex: 1;
+}
+
+.footer-left h4,
+.footer-links h4,
+.footer-right h4 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.footer-left .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #fcb045;
+  transition: color 0.3s ease;
+}
+
+.footer-left .social-icons a:hover {
+  color: #f6942b;
+}
+
+.footer-links a {
+  display: block;
+  margin-bottom: 6px;
+  color: #e68a00;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fcb045;
+}
+
+.footer-right p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color:#fcb045;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.85rem;
+  color:#ffff;
+}
+
+
+
+/* ---------- FEEDBACK FORM ---------- */
+.feedback-form-container {
+  display: none;                 /* hidden by default */
+  position: fixed;
+  inset: 0;                       /* top:0; bottom:0; left:0; right:0 */
+  background: rgba(0,0,0,0.7);   /* dark overlay */
+  justify-content: center;        /* horizontal center */
+  align-items: center;            /* vertical center */
+  z-index: 2000;
+  padding: 10px;                  /* prevents touching screen edges on mobile */
+  overflow-y: auto;               /* allow scroll if screen is small */
+}
+
+/* Form Box */
+.feedback-form {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;                    /* full width up to max */
+  max-width: 400px;               /* desktop max width */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-sizing: border-box;         /* include padding in width */
+  overflow: hidden;               /* prevent children from spilling out */
+}
+
+/* Form Heading */
+.feedback-form h3 {
+  margin-bottom: 10px;
+  color: #4a2c2a;
+  font-size: 1.4rem;
+}
+
+/* Form Paragraph */
+.feedback-form p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Inputs & Textarea */
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  max-width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* Submit Button */
+.feedback-form .btn {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #4a2c2a;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.feedback-form .btn:hover {
+  background-color: #6b3a37;
+}
+
+/* Rating Stars */
+.rating {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.rating i {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.rating i.active,
+.rating i.bi-star-fill {
+  color: gold;
+}
+
+/* Close Button */
+.feedback-form .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.feedback-form .close-btn:hover {
+  color: #ff4d4d;
+}
+
+/* Responsive*/
+@media (max-width: 480px) {
+  .feedback-form {
+    max-width: 95%;      /* almost full width on mobile */
+    padding: 15px;
+  }
+
+  .feedback-form h3 {
+    font-size: 1.2rem;
+  }
+
+  .feedback-form input,
+  .feedback-form textarea,
+  .feedback-form .btn {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* back to top */
+
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #8B0000; /* match library theme */
+  color: #fff;
+  border: none;
+  padding: 12px 15px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: none; /* hidden initially */
+  z-index: 1000;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#back-to-top:hover {
+  background: #ff4d4d;
+  transform: translateY(-3px);
+}
+
+
+/* ===== TOASTS ===== */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+  pointer-events: none; /* clicks pass through */
+}
+
+.toast {
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  min-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: slideIn 0.3s ease;
+}
+
+.toast.academic { background: #007BFF; }   /* blue */
+.toast.fiction { background: #E83E8C; }    /* pink */
+.toast.nonfiction { background: #28A745; } /* green */
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+/* Modal overlay */
+.feedback-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* dark transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Show modal */
+.feedback-form.show {
+  display: flex;
+}
+
+/* Modal content */
+.feedback-form-content {
+  background: #fff; /* white box */
+  padding: 25px 30px;
+  border-radius: 12px;
+  max-width: 400px; /* reduce width */
+  width: 90%;        /* responsive on small screens */
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  position: relative;
+  text-align: center;
+}
+
+/* Close button */
+.feedback-form-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Form inputs */
+.feedback-form-content input,
+.feedback-form-content textarea,
+.feedback-form-content button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Submit button */
+.feedback-form-content button {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.feedback-form-content button:hover {
+  background: #554ddb;
+}
+
+
+
+

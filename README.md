@@ -57,7 +57,7 @@ Campus-Shelf/
 
 ## Author
 
-**Srija Balabadrubi**
+**Srija Bala Badruni**
 
 GitHub: https://github.com/srijabala
 
